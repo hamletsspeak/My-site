@@ -44,48 +44,36 @@ document.getElementById("next-page").addEventListener("click", () => {
 
 displayProjects();
 
-const canvas = document.getElementById("spiralCanvas");
-const ctx = canvas.getContext("2d");
+document.addEventListener("DOMContentLoaded", function() {
+    gsap.from("header h1, header p", { opacity: 0, y: -20, duration: 1 });
+    gsap.from("nav ul li", { opacity: 0, y: 10, duration: 0.5, stagger: 0.2 });
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+    // Анимация появления секций при скролле
+    gsap.utils.toArray("section").forEach(section => {
+        gsap.from(section, {
+            scrollTrigger: {
+                trigger: section,
+                start: "top 80%", // Начинает анимацию, когда секция на 80% в зоне видимости
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1
+        });
+    });
 
-let angle = 0;
-let length = 2;
-let centerX = canvas.width / 2;
-let centerY = canvas.height / 2;
-let maxLength = Math.min(canvas.width, canvas.height) / 2;
-
-window.addEventListener("scroll", drawSpiral);
-window.addEventListener("resize", () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-    centerX = canvas.width / 2;
-    centerY = canvas.height / 2;
+    // Анимация карточек проектов
+    gsap.utils.toArray(".project").forEach(project => {
+        gsap.from(project, {
+            scrollTrigger: {
+                trigger: project,
+                start: "top 85%",
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.2
+        });
+    });
 });
-
-function drawSpiral() {
-    let scrollY = window.scrollY;
-    let dynamicLength = Math.min(scrollY / 5, maxLength);
-    
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
-    ctx.moveTo(centerX, centerY);
-    
-    for (let i = 0; i < 300; i++) {
-        angle += 0.1;
-        length += 0.5;
-        let x = centerX + length * Math.cos(angle);
-        let y = centerY + length * Math.sin(angle);
-
-        ctx.lineTo(x, y);
-
-        if (length > dynamicLength) break;
-    }
-
-    ctx.strokeStyle = "rgba(0, 123, 255, 0.5)";
-    ctx.lineWidth = 2;
-    ctx.stroke();
-}
-
-drawSpiral();
