@@ -43,37 +43,3 @@ document.getElementById("next-page").addEventListener("click", () => {
 });
 
 displayProjects();
-
-document.addEventListener("DOMContentLoaded", function() {
-    gsap.from("header h1, header p", { opacity: 0, y: -20, duration: 1 });
-    gsap.from("nav ul li", { opacity: 0, y: 10, duration: 0.5, stagger: 0.2 });
-
-    // Анимация появления секций при скролле
-    gsap.utils.toArray("section").forEach(section => {
-        gsap.from(section, {
-            scrollTrigger: {
-                trigger: section,
-                start: "top 80%", // Начинает анимацию, когда секция на 80% в зоне видимости
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            y: 50,
-            duration: 1
-        });
-    });
-
-    // Анимация карточек проектов
-    gsap.utils.toArray(".project").forEach(project => {
-        gsap.from(project, {
-            scrollTrigger: {
-                trigger: project,
-                start: "top 85%",
-                toggleActions: "play none none none"
-            },
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            stagger: 0.2
-        });
-    });
-});
