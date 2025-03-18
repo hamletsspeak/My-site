@@ -1,21 +1,56 @@
-body {
-    font-family: 'Poppins', sans-serif;
+/* Убедитесь, что у body нет лишних отступов */
+html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    font-family: 'Poppins', sans-serif;
     background-color: #f4f4f4;
     color: #333;
-    text-align: center;
+    scroll-behavior: smooth; /* Плавная прокрутка */
 }
 
 header {
     background: linear-gradient(135deg, #007BFF, #00C6FF);
     padding: 50px;
     color: white;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh; /* Минимальная высота */
+    height: auto; /* Автоматическая высота */
+    margin: 0; /* Убираем любые отступы */
+    box-sizing: border-box; /* Учитывает padding в расчете высоты */
+}
+
+/* Выравнивание заголовка и подзаголовка */
+header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px; /* Убираем лишний отступ */
+}
+
+header p {
+    font-size: 1.5rem;
+    margin: 0; /* Полностью убираем отступы */
+    text-align: center;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 10px 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -29,10 +64,61 @@ nav ul li a {
     text-decoration: none;
     color: #007BFF;
     font-weight: bold;
+    padding: 10px 15px;
 }
 
+/* Фоновые изображения с размытием */
 section {
-    padding: 40px 20px;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s ease-in-out; /* Плавная смена фона */
+}
+
+/* Начальные градиенты */
+#about {
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+}
+
+#projects {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+}
+
+#contact {
+    background: linear-gradient(135deg, #ff9a44, #fc6076);
+}
+
+/* Сохранение структуры заголовков */
+h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 1.5rem;
+    max-width: 800px; /* Чтобы текст не растягивался слишком сильно */
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #333;
+    color: white;
 }
 
 #projects .project {
@@ -44,8 +130,84 @@ section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+#project-carousel {
+    position: relative;
+    width: 60%;
+    margin: 20px auto;
+    overflow: hidden;
+    text-align: center;
+}
+
+.project.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
 .pagination {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+#project-container {
+    position: relative;
+    width: 100%; /* Контейнер теперь шире */
+    max-width: 350px; /* Ограничение максимальной ширины */
+    margin: 20px auto;
+    text-align: center;
+    transition: height 0.3s ease; /* Плавное изменение высоты */
+}
+
+/* Карточка проекта */
+.project {
+    position: relative; /* Секция остаётся статичной */
+    height: 500px; /* Фиксированная высота секции */
+    width: 100%;
+    max-width: 600px; /* Увеличиваем максимальную ширину */
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+    text-align: left;
+    min-height: 250px; /* Минимальная высота, чтобы не сжимался */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Заголовок проекта */
+.project h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333; /* Сделаем текст тёмным, чтобы он был виден */
+    margin-bottom: 10px;
+}
+
+/* Описание проекта */
+.project p {
+    font-size: 1.2rem;
+    color: #444; /* Сделаем текст серым для лучшей читабельности */
+    line-height: 1.5;
+}
+
+/* Ссылка на GitHub */
+.project a {
+    display: block;
+    margin-top: 15px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.project a:hover {
+    color: #0056b3;
 }
 
 .pagination button {
@@ -54,16 +216,14 @@ section {
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .pagination button:hover {
     background: #0056b3;
-}
-
-.pagination span {
-    font-size: 1.5em; /* Увеличенный размер цифры */
-    font-weight: bold;
-    margin: 0 10px;
+    transform: scale(1.1);
 }
 
 .contact-links {
@@ -81,14 +241,4 @@ section {
 
 .contact-links a img:hover {
     transform: scale(1.1);
-}
-
-#spiralCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1; /* Позади всего контента */
-    pointer-events: none; /* Чтобы клик не мешал */
 }

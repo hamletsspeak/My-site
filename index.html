@@ -9,7 +9,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-<canvas id="spiralCanvas"></canvas>
 
 <body>
     <header>
@@ -26,14 +25,16 @@
     </nav>
     
     <section id="about">
-        <h2>Обо мне</h2>
-        <p>Я занимаюсь разработкой сайтов и приложений, изучаю JavaScript и создаю интересные проекты.</p>
+        <div class="content">
+            <h2>Обо мне</h2>
+            <p>Изучаю Frontend разработку и верстаю сайты.</p>
+        </div>
     </section>
     
     <section id="projects">
         <h2>Мои проекты</h2>
-        <div id="project-container">
-            <!-- Проекты будут загружаться динамически -->
+        <div id="project-carousel">
+            <div id="project-container"></div>
         </div>
         <div class="pagination">
             <button id="prev-page">Назад</button>
@@ -43,23 +44,23 @@
     </section>
     
     <section id="contact">
-        <h2>Контакты</h2>
-        <div class="contact-links">
-            <a href="mailto:gamleturusadze@gmail.com" target="_blank">
-                <img src="icons/gmail-icon.png" alt="Gmail">
-            </a>
-            <a href="https://t.me/hamletsspeak" target="_blank">
-                <img src="icons/telegram-icon.png" alt="Telegram">
-            </a>
+        <div class="content">
+            <h2>Контакты</h2>
+            <div class="contact-links">
+                <a href="mailto:gamleturusadze@gmail.com" target="_blank">
+                    <img src="icons/gmail-icon.png" alt="Gmail">
+                </a>
+                <a href="https://t.me/hamletsspeak" target="_blank">
+                    <img src="icons/telegram-icon.png" alt="Telegram">
+                </a>
+            </div>
         </div>
     </section>
-    
     
     <footer>
         <p>&copy; 2025 hamletsspeak. Все права защищены.</p>
     </footer>
     
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
